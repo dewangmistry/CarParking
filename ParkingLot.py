@@ -6,10 +6,21 @@ class ParkingLot:
         self.occupied_slots = 0
 
     def call_function(self, input):
-        pass
+        input_vars = input.split(' ')
+        try:
+            if input_vars[0] == 'create_parking_lot':
+                status = self.create_parking_lot(input_vars[1])
+                print(f"Created a parking lot with {status} slots")
+        except (IndexError, ValueError):
+            print(f"Invalid input")
 
     def create_parking_lot(self, no_of_slots):
-        pass
+        """
+        Function to create parking lot with user provided slots
+        """
+        self.lot_capacity = int(no_of_slots)
+        self.slots = [0] * self.lot_capacity
+        return self.lot_capacity
 
     def get_nearest_empty_slot(self):
         pass
