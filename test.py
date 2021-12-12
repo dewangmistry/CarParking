@@ -31,5 +31,24 @@ class TestMyProgram(unittest.TestCase):
 
         self.assertEqual(-1, self.parking_lot.get_nearest_empty_slot())
 
+    def test_leave(self):
+        """
+        Testing leave function
+        """
+        result = self.parking_lot.leave(4)
+        self.assertEqual(True, result)
+
+def suite():
+    """
+    Test suite to execute tests in order
+    """
+    suite = unittest.TestSuite()
+    suite.addTest(TestMyProgram('test_create_parking_lot'))
+    suite.addTest(TestMyProgram('test_park'))
+    suite.addTest(TestMyProgram('test_leave'))
+    return suite
+
 if __name__ == "__main__":
-    unittest.main()
+    # unittest.main()
+    runner = unittest.TextTestRunner(failfast=True)
+    runner.run(suite())
