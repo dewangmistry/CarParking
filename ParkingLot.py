@@ -4,6 +4,7 @@ class ParkingLot:
     def __init__(self) -> None:
         self.lot_capacity = 0
         self.occupied_slots = 0
+        # self.nearest_slot = 1
 
     def call_function(self, input):
         input_vars = input.split(' ')
@@ -11,6 +12,13 @@ class ParkingLot:
             if input_vars[0] == 'create_parking_lot':
                 status = self.create_parking_lot(input_vars[1])
                 print(f"Created a parking lot with {status} slots")
+            elif input_vars[0] == "park":
+                car_to_park = Car(input_vars[1], input_vars[2])
+                status = self.park(car_to_park)
+                if status == -1:
+                    print("Sorry, parking lot is full")
+                else:
+                    print(f"Allocated slot number: {status}")
         except (IndexError, ValueError):
             print(f"Invalid input")
 
@@ -23,10 +31,20 @@ class ParkingLot:
         return self.lot_capacity
 
     def get_nearest_empty_slot(self):
-        pass
+        if self.occupied_slots < self.lot_capacity:
+            empty_slot = self.slots.index(0)
+        else:
+            empty_slot = -1
+        return empty_slot
 
-    def park(self, registration_no: str, colour: str) -> int:
-        pass
+    def park(self, car_to_park: Car) -> int:
+        empty_slot = self.get_nearest_empty_slot()
+        if empty_slot == -1:
+            return -1
+        else:
+            self.slots[empty_slot] = car_to_park
+            self.occupied_slots += 1
+            return empty_slot+1
 
     def leave(self, slot_no: int) -> bool:
         pass
