@@ -38,6 +38,32 @@ class TestMyProgram(unittest.TestCase):
         result = self.parking_lot.leave(4)
         self.assertEqual(True, result)
 
+    def test_registration_numbers_for_cars_with_colour(self):
+        """
+        Testing registration_numbers_for_cars_with_colour function
+        """
+        result = self.parking_lot.registration_numbers_for_cars_with_colour('White')
+        self.assertEqual("KA-01-HH-1234, KA-01-HH-9999", result)
+        self.assertEqual(-1, self.parking_lot.registration_numbers_for_cars_with_colour('Orange'))
+
+    def test_slot_numbers_for_cars_with_colour(self):
+        """
+        Testing slot_numbers_for_cars_with_colour function
+        """
+        result_1 = self.parking_lot.slot_numbers_for_cars_with_colour("White")
+        result_2 = self.parking_lot.slot_numbers_for_cars_with_colour("Orange")
+        self.assertEqual("1, 2", result_1)
+        self.assertEqual(-1, result_2)
+
+    def test_slot_number_for_registration_number(self):
+        """
+        Testing slot_number_for_registration_number function
+        """
+        result_1 = self.parking_lot.slot_number_for_registration_number("KA-01-HH-3141")
+        result_2 = self.parking_lot.slot_number_for_registration_number("MH-04-AY-1111")
+        self.assertEqual(6, result_1)
+        self.assertEqual(-1, result_2)
+
 def suite():
     """
     Test suite to execute tests in order
@@ -46,6 +72,9 @@ def suite():
     suite.addTest(TestMyProgram('test_create_parking_lot'))
     suite.addTest(TestMyProgram('test_park'))
     suite.addTest(TestMyProgram('test_leave'))
+    suite.addTest(TestMyProgram('test_registration_numbers_for_cars_with_colour'))
+    suite.addTest(TestMyProgram('test_slot_numbers_for_cars_with_colour'))
+    suite.addTest(TestMyProgram('test_slot_number_for_registration_number'))
     return suite
 
 if __name__ == "__main__":
