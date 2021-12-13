@@ -78,6 +78,5 @@ def suite():
     return suite
 
 if __name__ == "__main__":
-    # unittest.main()
     runner = unittest.TextTestRunner(failfast=True)
     runner.run(suite())
