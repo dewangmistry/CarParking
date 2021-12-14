@@ -38,6 +38,13 @@ class TestMyProgram(unittest.TestCase):
         result = self.parking_lot.leave(4)
         self.assertEqual(True, result)
 
+    def test_get_nearest_empty_slot(self):
+        """
+        Testing get_nearest_empty_slot function
+        """
+        result = self.parking_lot.get_nearest_empty_slot()
+        self.assertEqual(3, result)
+
     def test_registration_numbers_for_cars_with_colour(self):
         """
         Testing registration_numbers_for_cars_with_colour function
@@ -72,6 +79,7 @@ def suite():
     suite.addTest(TestMyProgram('test_create_parking_lot'))
     suite.addTest(TestMyProgram('test_park'))
     suite.addTest(TestMyProgram('test_leave'))
+    suite.addTest(TestMyProgram('test_get_nearest_empty_slot'))
     suite.addTest(TestMyProgram('test_registration_numbers_for_cars_with_colour'))
     suite.addTest(TestMyProgram('test_slot_numbers_for_cars_with_colour'))
     suite.addTest(TestMyProgram('test_slot_number_for_registration_number'))

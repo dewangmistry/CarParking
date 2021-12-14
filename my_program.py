@@ -8,11 +8,13 @@ def main():
     parser.add_argument('-f', required=False, dest='input_file')
     args = parser.parse_args()
     
+    # Check if input file argument is provided and read from it
     if args.input_file:
         with open(args.input_file) as file:
             for inputs in file:
                 user_input = inputs.rstrip('\n')
                 parking_lot.call_function(user_input)
+    # Interactive mode
     else:
         while True:
             user_input = input("$ ")

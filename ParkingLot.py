@@ -68,6 +68,10 @@ class ParkingLot:
             # exit
             elif function_to_call == "exit":
                 exit(0)
+
+            # if input not found
+            else:
+                print("Not found")
         except (IndexError, ValueError):
             print(f"Invalid input")
 
